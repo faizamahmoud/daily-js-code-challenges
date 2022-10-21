@@ -229,12 +229,20 @@ Prompt:
 
 Examples:
 
-removeEnds('SEI Rocks!'); //=> "DI Rocks"
 removeEnds('a'); //=> "" (empty string)
 -----------------------------------------------------------------*/
 // Your solution for 08-removeEnds here:
 
+function removeEnds(string){
+  let removedEndsStr = "";
+  for(let i=1; i< (string.length) - 1; i++){
+    removedEndsStr += string[i]
+  }
+  return removedEndsStr
+}
 
+console.log(removeEnds('SEI Rocks!'))
+//=> "DI Rocks"
 
 
 
