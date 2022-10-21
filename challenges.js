@@ -144,7 +144,7 @@ computeRemainder(10.5, 3) //=> 1.5
 
 function computerRemainder(dividend, divisor){
   if(divisor == 0){
-    return undefined
+    return Infinity
   }
   const divide = dividend/divisor;
   return Math.truc(divide)
@@ -171,9 +171,20 @@ range(5,2) //=> "First argument must be less than second"
 -----------------------------------------------------------------*/
 // Your solution for 06-range here:
 
+function range(num1, num2){
+  
+  const arr = [];
+  if (num2 < num1){
+    console.log("First argument must be less than second")
+  }
 
+  for(let i=num1; i< num2 ; i++){
+    arr.push(i)
+  }
+return arr;
+}
 
-
+range(1,4) //=> [1,2,3]
 
 /*-----------------------------------------------------------------
 Challenge: 07-reverseUpcaseString
