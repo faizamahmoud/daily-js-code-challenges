@@ -80,17 +80,25 @@ Prompt:
 
 Examples:
 
-sumNumbers([10]) //=> 10
-sumNumbers([5, 10]) //=> 15
-sumNumbers([2, 10, -5]) //=> 7
-sumNumbers([]) //=> 0
 -----------------------------------------------------------------*/
 // Your solution for 03-sumNumbers here:
 
 
+function sumNumbers(arr){
+  let sum;
+
+  for(i=0; i< arr.length; i++){
+    sum += arr[i];
+    console.log(sum)
+  }
+return sum;
+}
 
 
-
+sumNumbers([10]) //=> 10
+sumNumbers([5, 10]) //=> 15
+sumNumbers([2, 10, -5]) //=> 7
+sumNumbers([]) //=> 0
 /*-----------------------------------------------------------------
 Challenge: 04-addList
 
@@ -134,7 +142,13 @@ computeRemainder(10.5, 3) //=> 1.5
 -----------------------------------------------------------------*/
 // Your solution for 05-computeRemainder:
 
-
+function computerRemainder(dividend, divisor){
+  if(divisor == 0){
+    return undefined
+  }
+  const divide = dividend/divisor;
+  return Math.truc(divide)
+}
 
 
 
