@@ -193,15 +193,27 @@ Difficulty: Basic
 
 Prompt:
 
-- Write a function called reverseUpcaseString that accepts a single string argument, then returns the string with its characters in reverse orderand converts all characters to uppercase.
+- Write a function called reverseUpcaseString that accepts a single string argument, then returns the string with its characters in reverse orderand converts 
+all characters to uppercase.
 
 Examples:
 
-reverseUpcaseString("SEI Rocks!"); //=> "!SKCOR IES" 
 -----------------------------------------------------------------*/
 // Your solution for 07-reverseUpcaseString here:
 
-
+function reverseUpcaseString(string){
+  let str = string //string
+  let n = str.length; //number
+  let reverse = ""; //variable holds nothing
+  for(let i=n-1; i >= 0 ; i--){
+    reverse += str[i]
+    
+  }
+  return reverse.toUpperCase();
+}
+//
+let string1 = "SEI Rocks!"
+console.log(reverseUpcaseString("SEI Rocks!") )
 
 
 
