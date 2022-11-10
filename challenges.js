@@ -89,7 +89,7 @@ function sumNumbers(arr){
 
   for(i=0; i< arr.length; i++){
     sum += arr[i];
-    console.log(sum)
+    // console.log(sum)
   }
 return sum;
 }
@@ -106,7 +106,8 @@ Difficulty: Basic
 
 Prompt:
 
-- Write a function called addList that accepts any quantity of numbers as arguments, adds them together and returns the resulting sum.
+- Write a function called addList that accepts any quantity of numbers as arguments, adds them together 
+and returns the resulting sum.
 - Assume all parameters will be numbers.
 - If called with no arguments, return 0 (zero).
 
@@ -117,6 +118,7 @@ add(1,50,1.23) //=> 52.23
 add(7,-12) //=> -5
 -----------------------------------------------------------------*/
 // Your solution for 04-addList here:
+
 
 
 
@@ -175,7 +177,7 @@ function range(num1, num2){
   
   const arr = [];
   if (num2 < num1){
-    console.log("First argument must be less than second")
+    // console.log("First argument must be less than second")
   }
 
   for(let i=num1; i< num2 ; i++){
@@ -213,7 +215,7 @@ function reverseUpcaseString(string){
 }
 //
 let string1 = "SEI Rocks!"
-console.log(reverseUpcaseString("SEI Rocks!") )
+// console.log(reverseUpcaseString("SEI Rocks!") )
 
 
 
@@ -241,7 +243,7 @@ function removeEnds(string){
   return removedEndsStr
 }
 
-console.log(removeEnds('SEI Rocks!'))
+// console.log(removeEnds('SEI Rocks!'))
 //=> "DI Rocks"
 
 
@@ -260,14 +262,29 @@ Prompt:
 
 Examples:
 
-charCount('hello') //=> { h: 1, e: 1, l: 2, o: 1 }
-charCount('Today is fantastic!') //=> { T: 1, o: 1, d: 1, a: 3, y: 1, ' ': 2, i: 2, s: 2, f: 1, n: 1, t: 2, c: 1, '!': 1 }
 -----------------------------------------------------------------*/
 // Your solution for 09-charCount here:
 
+function charCount(str){
+  if(str == ""){
+    return {}
+  }
+  let count = {};
+  for(let i=0; i<str.length; i++ ){
+    let letter = str[i];
+    if(count[letter]=== undefined){
+      count[letter] = 1;
+    }else{
+      count[letter]++
+    }
+  }
+return count
+}
 
+// console.log(charCount('hello') )//=> { h: 1, e: 1, l: 2, o: 1 }
+// console.log(charCount('Today is fantastic!')) //=> { T: 1, o: 1, d: 1, a: 3, y: 1, ' ': 2, i: 2, s: 2, f: 1, n: 1, t: 2, c: 1, '!': 1 }
 
-
+// *
 
 /*-----------------------------------------------------------------
 Challenge: 10-formatWithPadding
@@ -291,9 +308,24 @@ formatWithPadding(1234, '*', 3); //=> "1234"
 -----------------------------------------------------------------*/
 // Your solution for 10-formatWithPadding here:
 
+const formatWithPadding = (formatThis, pad, l) => {
+  let str = "";
+  let formatString = formatThis.toString();
+  const len = formatString.length;
+  let paddingLen = l - len;
 
+  if( l > len){
+    return formatString
+  }
+  
+  for(let i=0; i<paddingLen;i++){
+    str += pad
 
+  }
+return str+formatString
+}
 
+// console.log(formatWithPadding(123, '0', 5))
 
 /*-----------------------------------------------------------------
 Challenge: 11-isPalindrome
