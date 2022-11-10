@@ -334,23 +334,33 @@ Difficulty: Intermediate
 
 Prompt:
 
-- Write a function called isPalindrome that accepts a single string argument, then returns true or false depending upon whether or not the string is a palindrome.
+- Write a function called isPalindrome that accepts a single string argument, then returns true or false depending upon 
+  whether or not the string is a palindrome.
 - A palindrome is a word or phrase that are the same forward or backward.
 - Casing and spaces are not included when considering whether or not a string is a palindrome.
 - If the length of the string is 0 or 1, return true.
 
 Examples:
 
-isPalindrome('SEI Rocks'); //=> false
-isPalindrome('rotor'); //=> true
-isPalindrome('A nut for a jar of tuna'); //=> true
-isPalindrome(''); //=> true
 -----------------------------------------------------------------*/
 // Your solution for 11-isPalindrome here:
 
+function isPalindrome(str){
+  if(str.length === 0 || str.length === 1){
+    return true
+  }
+  
+  let lowerCaseStr = str.toLowerCase();
+  let reversedStr = lowerCaseStr.split('').reverse().join('');
+  console.log(`reversedStr: ${reversedStr}, lowerCaseStr: ${lowerCaseStr}`)
+  return reversedStr === lowerCaseStr
+}
 
 
-
+console.log('false:',  isPalindrome('SEI Rocks')); //=> false
+console.log('true:', isPalindrome('rotor')); //=> true
+console.log('true:', isPalindrome('A nut for a jar of tuna')); //=> true
+console.log('true:', isPalindrome('')); //=> true
 
 /*-----------------------------------------------------------------
 Challenge: 12-hammingDistance
@@ -367,14 +377,27 @@ In information theory, the hamming distance refers to the count of the differenc
 
 Examples:
 
-hammingDistance('abc', 'abc'); //=> 0
-hammingDistance('a1c', 'a2c'); //=> 1
-hammingDistance('!!!!', '****'); //=> 4
-hammingDistance('abc', 'ab'); //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 12-hammingDistance here:
 
+function hammingDistance(strOne,strTwo){
+  let count = 0;
+  if(strOne.length != strTwo.length){
+    return NaN
+  }
+  for(let i=0; i<strOne.length; i++){
+    if(strOne[i] !== strTwo[i]){
+      count++
+    }
+  }
+  return count;
+  
+}
 
+console.log(hammingDistance('abc', 'abc')); //=> 0
+console.log(hammingDistance('a1c', 'a2c')); //=> 1
+console.log(hammingDistance('!!!!', '****')); //=> 4
+console.log(hammingDistance('abc', 'ab')); //=> NaN
 
 
 
