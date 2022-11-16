@@ -352,15 +352,15 @@ function isPalindrome(str){
   
   let lowerCaseStr = str.toLowerCase();
   let reversedStr = lowerCaseStr.split('').reverse().join('');
-  console.log(`reversedStr: ${reversedStr}, lowerCaseStr: ${lowerCaseStr}`)
+  // console.log(`reversedStr: ${reversedStr}, lowerCaseStr: ${lowerCaseStr}`)
   return reversedStr === lowerCaseStr
 }
 
 
-console.log('false:',  isPalindrome('SEI Rocks')); //=> false
-console.log('true:', isPalindrome('rotor')); //=> true
-console.log('true:', isPalindrome('A nut for a jar of tuna')); //=> true
-console.log('true:', isPalindrome('')); //=> true
+// console.log('false:',  isPalindrome('SEI Rocks')); //=> false
+// console.log('true:', isPalindrome('rotor')); //=> true
+// console.log('true:', isPalindrome('A nut for a jar of tuna')); //=> true
+// console.log('true:', isPalindrome('')); //=> true
 
 /*-----------------------------------------------------------------
 Challenge: 12-hammingDistance
@@ -876,15 +876,46 @@ Hint:
 
 Examples:
 
-addChecker( [1, 2], 3 ) // => true
-addChecker( [-3, 2], 9 ) // => false
-addChecker( [10, 15, 16, 22], 32 ) // => true
-addChecker( [10, 15, 16, 22], 19 ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 29-addChecker here:
 
+const addChecker = (prices, budget) => {
+  if (budget <= 0) return false;
+  let totalCostOfItems = 0; 
+  let i = 0; 
+  
+  while(totalCostOfItems < budget) {
+    totalCostOfItems += prices[i]
+    // console.log('totalCostOfItems:', totalCostOfItems)
+    i++
+  }
+  if(totalCostOfItems === budget){
+    return true
+  }else{
+    return false;
+  }
+} 
+
+const addCheckerReduce = (prices, budget) => {
+  let total = 0; 
+  const isExact = prices.reduce((prevPrice, currentPrice) => {
+    if(budget <= 0) return false;
+  (prevPrice + currentPrice)
+  // if total > budget return false, else if total === budget return true 
+  return total > budget ? false : total === budget ? true : false
+
+  }, total)
+
+} 
 
 
+
+
+console.log('addCheckerReduce returns false', addChecker( [-3, 2], 9 )) // => false
+console.log('addCheckerReduce returns false', addChecker( [10, 15, 16, 22], 19 )) // => false
+console.log('addCheckerReduce returns true', addChecker( [1, 2], 3 )) // true
+console.log('addCheckerReduce returns false', addChecker( [10, 15, 16, 22], 32 )) // => false
+console.log('addCheckerReduce returns false', addChecker( [10, 15], 32 )) // => false
 
 
 /*-----------------------------------------------------------------
@@ -915,4 +946,7 @@ totalTaskTime( [5, 2, 6, 8, 7, 2], 3 ) // => 12
 -----------------------------------------------------------------*/
 // Your solution for 30- here:
 
-
+// 2 inputs : 
+// 1. array of integers, where each element is the amount of time to complete a task
+// 2. integer rep the number of CPU "threads", intger = sum(1.)
+// output: sum of total time its going to take to complete the queue
