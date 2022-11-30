@@ -911,11 +911,11 @@ const addCheckerReduce = (prices, budget) => {
 
 
 
-console.log('addCheckerReduce returns false', addChecker( [-3, 2], 9 )) // => false
-console.log('addCheckerReduce returns false', addChecker( [10, 15, 16, 22], 19 )) // => false
-console.log('addCheckerReduce returns true', addChecker( [1, 2], 3 )) // true
-console.log('addCheckerReduce returns false', addChecker( [10, 15, 16, 22], 32 )) // => false
-console.log('addCheckerReduce returns false', addChecker( [10, 15], 32 )) // => false
+// console.log('addCheckerReduce returns false', addChecker( [-3, 2], 9 )) // => false
+// console.log('addCheckerReduce returns false', addChecker( [10, 15, 16, 22], 19 )) // => false
+// console.log('addCheckerReduce returns true', addChecker( [1, 2], 3 )) // true
+// console.log('addCheckerReduce returns false', addChecker( [10, 15, 16, 22], 32 )) // => false
+// console.log('addCheckerReduce returns false', addChecker( [10, 15], 32 )) // => false
 
 
 /*-----------------------------------------------------------------
@@ -950,3 +950,26 @@ totalTaskTime( [5, 2, 6, 8, 7, 2], 3 ) // => 12
 // 1. array of integers, where each element is the amount of time to complete a task
 // 2. integer rep the number of CPU "threads", intger = sum(1.)
 // output: sum of total time its going to take to complete the queue
+
+
+// Given: An array of integers, a target number. 
+// Task: To return the indices of the two numbers in the array that add up to a specific target number. 
+// Allowed assumptions: Each input has only one solution, and the same element cannot be used twice.
+
+// [1,2,3] T= 4
+// [1,2,3] T= 3
+// 
+
+
+var twoSum = function(nums, target) {
+  var hash = {};
+  var len = nums.length;
+  for (var i = 0; i < len; i++) {
+    if (nums[i] in hash) return [hash[nums[i]], i];
+    console.log([hash[nums[i]], i])
+    hash[target - nums[i]] = i
+  }
+  return [-1, -1];
+};
+
+twoSum([1,2,3],4)
