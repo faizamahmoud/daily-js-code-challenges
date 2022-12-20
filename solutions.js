@@ -1245,7 +1245,7 @@ Examples:
 totalTaskTime( [], 1 ) // => 0
 totalTaskTime( [4, 2, 5], 1 ) // => 11
 totalTaskTime( [5, 8], 2 ) // => 8
-totalTaskTime( [4, 2, 10], 2 ) // => 12
+totalTaskTime( [4, 2, 10], 2 ) //! => 12
 totalTaskTime( [2, 2, 3, 3, 4, 4], 2 ) //=> 9
 totalTaskTime( [5, 2, 6, 8, 7, 2], 3 ) // => 12
 -----------------------------------------------------------------*/
