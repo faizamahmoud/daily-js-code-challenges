@@ -68,7 +68,24 @@ function hashSolution(nums) {
     return false;
   }
    
-  frequencySolution([1,2,3,6,8,2])
+  function frequencyWithNegativeSolution(nums) {
+    // static method to find the min value in the array
+    const minValue = Math.min(...nums);
+
+    // initialize a new array    
+    const freq = new Array(Math.max(...nums) - minValue + 1).fill(0);
+  
+    for (let num of nums) {
+      freq[num - minValue]++;
+      if (freq[num - minValue] > 1) {
+        return true;
+      }
+    }
+  
+    return false;
+  }
+  
+  
 module.exports = {
     bruteForce: bruteForce,
 };
