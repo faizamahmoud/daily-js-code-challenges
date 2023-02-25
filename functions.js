@@ -51,6 +51,24 @@ function hashSolution(nums) {
     return false;
   }
   
+
+  function frequencySolution(nums) {
+    // assuming the range of values is known e.g. 0<nums<900 --> new Array(900)
+    // in this case, its unknown
+    const freq = new Array(100000).fill(0); 
+    
+    for (let num of nums) {
+    //counts the number of times a value exists    
+        freq[num]++;
+      
+      if (freq[num] > 1) {
+        return true;
+      }
+    }
+    return false;
+  }
+   
+  frequencySolution([1,2,3,6,8,2])
 module.exports = {
     bruteForce: bruteForce,
 };
