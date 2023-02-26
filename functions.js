@@ -1,3 +1,5 @@
+const util = require('util-inspect');
+
 /* 
 Brute force approach: You can use two nested loops to compare each element of the array with 
 every other element. If any two elements are equal, return true; otherwise, return false. 
@@ -85,7 +87,79 @@ function hashSolution(nums) {
     return false;
   }
   
+//   splice(starting index, # of elements to delete, addItem)
+// reassignment preserves array length and overwrites whats there
+// splice(in an array) and push return the item in question
+// inefficient: time limit exceeded with bigger arrays, O(n^2)
+// const moveZeroesIneffienct = (nums) => {
+// // O(1)
+// if(nums.length < 1) return nums;
+
+// // special case outside of loop        
+// if(nums[0] === 0) {
+//     nums.push(nums.shift())
+// };
+//     // O(n)
+//     for(let i=1; i<nums.length;i++){
+//         // O(n)
+//         // time complexity is dependent on the position of the 0's
+//         if(nums[i] === 0){
+//             // console.log('i: ', i, 'nums: ', nums[i])
+//             // remove then add to the end
+//             let moveToEnd = nums.splice(i,1)
+//             nums.push(moveToEnd[0])
+//             i--;
+//         }
+//     }
+// return nums;
+// }
+
+// two - pointers
+// O(n) 
+const moveZeroes = (nums) => {
+    let lastNonZero = 0;
+    for (let i = 0; i < nums.length; i++) {
+      if (nums[i] !== 0) {
+        // destructure assignment to swap the values 
+        // console.log(`nums[lastNonZero] ${nums[i]} nums[i]  ${nums[lastNonZero]}`)
+        // [nums[lastNonZero], nums[i]] = [nums[i], nums[lastNonZero]];
+        let temp = nums[lastNonZero];
+        nums[lastNonZero] = nums[i];
+        nums[i] = temp;
+
+        lastNonZero++;
+      }
+    }
+    return nums;
+  }
+
+//   [1,2,0,3,0,1]
+// nums[lastNonZero] = nums[0]   nums[i=0] = nums[1]
+// 
+
+// filter and concatenate
+const moveZeroes = (nums) => {
+    const nonZeroes = nums.filter(num => num !== 0);
+    const zeroes = nums.filter(num => num === 0);
+    return nonZeroes.concat(zeroes);
+  }
   
+// count and swap
+  const moveZeroes = (nums) => {
+    let numZeros = 0;
+    for (let i = 0; i < nums.length; i++) {
+      if (nums[i] === 0) {
+        numZeros++;
+      } else if (numZeros > 0) {
+        nums[i - numZeros] = nums[i];
+        nums[i] = 0;
+      }
+    }
+    return nums;
+  }
+  
+
 module.exports = {
     bruteForce: bruteForce,
+    moveZeroes: moveZeroes,
 };
