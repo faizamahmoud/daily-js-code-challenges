@@ -48,6 +48,7 @@ function hashSolution(nums) {
         if (seen.has(num)) {
         return true;
       }
+      // add num to the set
       seen.add(num);
     }
     return false;
@@ -75,6 +76,7 @@ function hashSolution(nums) {
     const minValue = Math.min(...nums);
 
     // initialize a new array    
+    // this creates an array where the counter for the minValue is the first position
     const freq = new Array(Math.max(...nums) - minValue + 1).fill(0);
   
     for (let num of nums) {
@@ -114,15 +116,15 @@ function hashSolution(nums) {
 // return nums;
 // }
 
-// two - pointers
+//* two - pointers
 // O(n) 
-const moveZeroes = (nums) => {
+const moveZeroesTwoPointers = (nums) => {
     let lastNonZero = 0;
     for (let i = 0; i < nums.length; i++) {
       if (nums[i] !== 0) {
-        // destructure assignment to swap the values 
-        // console.log(`nums[lastNonZero] ${nums[i]} nums[i]  ${nums[lastNonZero]}`)
-        // [nums[lastNonZero], nums[i]] = [nums[i], nums[lastNonZero]];
+        
+        // destructure assignment to swap the values - // [nums[lastNonZero], nums[i]] = [nums[i], nums[lastNonZero]];
+        
         let temp = nums[lastNonZero];
         nums[lastNonZero] = nums[i];
         nums[i] = temp;
@@ -133,33 +135,133 @@ const moveZeroes = (nums) => {
     return nums;
   }
 
-//   [1,2,0,3,0,1]
-// nums[lastNonZero] = nums[0]   nums[i=0] = nums[1]
-// 
 
-// filter and concatenate
-const moveZeroes = (nums) => {
-    const nonZeroes = nums.filter(num => num !== 0);
-    const zeroes = nums.filter(num => num === 0);
-    return nonZeroes.concat(zeroes);
-  }
+//* filter and concatenate
+// this doesnt work though because the filter function returns a new array for 
+// zeros and non-zeros and then combines the two new arrays but nums remains unmodified
+// this function does not meet the requirement of the problem which is to modify the input
+// array in place
+const moveZeroesFilterAndConcat = (nums) => nums = nums.filter(num => num !==  0).concat(nums.filter(num => num === 0))
   
-// count and swap
-  const moveZeroes = (nums) => {
+
+
+
+
+
+
+//  two - pointer: count and swap
+  const moveZeroesCountAndSwap = (nums) => {
+    
     let numZeros = 0;
+    
     for (let i = 0; i < nums.length; i++) {
       if (nums[i] === 0) {
         numZeros++;
       } else if (numZeros > 0) {
+          // Move the current element to the position i-numZeros, which is the first 
+          // available slot to the left of the zeros
+          // nums[2-2] = 1
         nums[i - numZeros] = nums[i];
+        // set the current element to zero
+        // nums[2] = 0
         nums[i] = 0;
       }
     }
     return nums;
   }
+
+
+/*
+To modify the array in place, we need to update the elements of the array directly without creating
+a new array
+
+apparently, not efficient for large input sizes
+*/
+
+const moveZeroes = nums => {
+  // keeps track of current non-zero index
+  let j = 0;
   
+  for (let i = 0; i < nums.length; i++) {
+    console.log(nums)
+
+  // if the num is not zero
+    if (nums[i] !== 0) {
+      // assign num[j] to num[i]
+      // nums[i] is currently still the same
+      nums[j] = nums[i];
+      console.log(`i: ${i}, nums[${j}]: ${nums[j]}`)
+      
+      j++;
+    }
+  }
+  // after all non-zeros are moved to the left,the remaining elements are assigned to zeros
+  while (j < nums.length) {
+    nums[j] = 0;
+    j++;
+  }
+}
+
+// to optimize the code above, reduce the number of operations
+const moveZeros = nums => {
+  // used to traverse the array
+  let left = 0; 
+  let right = 0; 
+
+  while(right < nums.length){
+    if(nums[right] != 0){
+      // swap non-zero element with the left pointer
+      let temp = nums[left];
+      nums[left] = nums[right];
+      nums[right] = temp;
+      left++;
+    }
+    right++
+  }
+}
+
+const moveItemsToTheLeft = nums => {
+  // current locker we;re examinging starting from the left
+  let currentLocker = 0; 
+  // an available locker but still has a students name on it
+  let openLocker = 0; 
+
+  let BeforeLastLocker = nums.length;
+  
+  while(currentLocker < BeforeLastLocker){
+  
+    // if the current locker contains items
+    if(nums[currentLocker] != 0){
+      
+      // store the empty locker's students label on the table
+      let table = nums[openLocker];
+      
+      // store the items from the currentLocker in the locker to the left
+      nums[openLocker] = nums[currentLocker];
+      
+      // and now the currentLocker will be empty and have studentLabel on it
+      nums[currentLocker] = table;
+
+      // check the next locker to the right
+      currentLocker++;
+    }
+
+    openLocker++
+  }
+}
+
+
+
+
+let nums = [0, 0, 1, 0, 3, 0, 0, 12, 0];
+console.log(moveZeroesCountAndSwap(nums))
+// moveZeros
+// max subarray
+// two sum
+// longest word
 
 module.exports = {
     bruteForce: bruteForce,
-    moveZeroes: moveZeroes,
+    moveZeroesCountAndSwap: moveZeroesCountAndSwap,
+    moveZeroesTwoPointers: moveZeroesTwoPointers,
 };
