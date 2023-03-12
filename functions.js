@@ -255,7 +255,7 @@ const moveItemsToTheLeft = nums => {
 
 let nums = [0, 0, 1, 0, 3, 0, 0, 12, 0];
 console.log(moveZeroesCountAndSwap(nums))
-// moveZeros
+
 // max subarray
 // two sum
 // longest word
